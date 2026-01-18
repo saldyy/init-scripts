@@ -34,10 +34,7 @@ Plug('ThePrimeagen/harpoon')
 Plug('kdheepak/lazygit.nvim')
 Plug('tpope/vim-fugitive')
 
-Plug('supermaven-inc/supermaven-nvim')
-
 Plug('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && npx --yes yarn install' })
-Plug('supermaven-inc/supermaven-nvim')
 
 vim.call('plug#end')
 
