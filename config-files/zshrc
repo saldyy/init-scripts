@@ -9,7 +9,7 @@ zplug "plugins/aws", from:oh-my-zsh
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
 zplug "~/.zsh/zsh-autosuggestions", from:local
-zplug "~/.zsh/zsh-autocomplete", from:local
+zplug "~/.zsh/zsh-completions", from:local
 
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
@@ -18,6 +18,8 @@ if ! zplug check --verbose; then
     fi
 fi
 
+
+fpath=($HOME/.zsh/zsh-completions/src $fpath)
 
 export FNM_PATH="$HOME/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then

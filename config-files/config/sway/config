@@ -42,10 +42,6 @@ output * bg /home/saldyy/Pictures/wallpaper.jpeg fill
 #
 # Example configuration:
 #
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-#          before-sleep 'swaylock -f -c 000000'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -76,7 +72,7 @@ output * bg /home/saldyy/Pictures/wallpaper.jpeg fill
     bindsym $mod+Shift+q kill
 
     # Lock screen
-    bindsym Mod1+Shift+L exec swaylock 
+    bindsym Mod1+Shift+L exec "swaylock -i ~/Pictures/cyberpunk_wallpaper_2.jpg"
 
     # Start your launcher
     bindsym $mod+d exec $menu
