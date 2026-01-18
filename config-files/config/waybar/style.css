@@ -1,0 +1,129 @@
+@define-color bg        #282a36;
+@define-color bg2       #303446; /* gentle hover/alt */
+@define-color surface   #44475a; /* current line */
+@define-color fg        #f8f8f2;
+@define-color comment   #6272a4;
+@define-color cyan      #8be9fd;
+@define-color green     #50fa7b;
+@define-color orange    #ffb86c;
+@define-color pink      #ff79c6;
+@define-color purple    #bd93f9;
+@define-color red       #ff5555;
+@define-color yellow    #f1fa8c;
+
+* {
+  font-family: 'Noto Sans Mono', 'Font Awesome 6 Free', 'Font Awesome 6 Brands', monospace;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+window#waybar {
+  background: transparent;
+}
+
+#waybar {
+  color: @fg;
+}
+
+window#waybar.empty {
+  background-color: transparent;
+  border: none;
+}
+
+.modules-left, .modules-right {
+  background: @bg;
+  border: 1px solid @surface;
+  border-radius: 16px;
+  padding: 4px 8px;
+  margin: 10px;
+  box-shadow: 0 6px 18px 0 rgba(0,0,0,0.25);
+}
+
+.modules-center {
+  color: @comment;
+}
+
+#workspaces button {
+  color: @comment;
+  background: transparent;
+  padding: 0 6px;
+  margin: 0 2px;
+  border-radius: 10px;
+}
+#workspaces button:hover {
+  border: 1px solid @surface;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#pulseaudio,
+#tray {
+  padding: 0 10px;
+  color: @fg;
+  border-radius: 16px;
+}
+
+
+#window,
+#workspaces {
+  margin: 0 4px;
+}
+
+#clock {
+  color: @cyan;
+}
+
+#battery {
+  color: @green;
+}
+
+#battery.charging, #battery.plugged {
+  color: @orange;
+}
+
+#battery.critical {
+  color: @red;
+}
+
+#cpu {
+  color: @pink;
+}
+
+#memory {
+  color: @green;
+}
+
+#network {
+}
+
+#pulseaudio {
+  color: @comment;
+}
+
+#pulseaudio.muted {
+  color: @red;
+}
+
+#wireplumber {
+  color: #000000;
+}
+
+#wireplumber.muted {
+}
+
+#tray {
+  background-color: @purple;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+  background-color: @red;
+}
+
+

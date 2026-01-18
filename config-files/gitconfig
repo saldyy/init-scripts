@@ -1,0 +1,12 @@
+[init]
+	defaultBranch = master
+[user]
+	email = png9981@gmail.com
+	name = Phillip Nguyen
+
+[pull]
+	rebase = true
+[alias]
+	adog = log --all --decorate --oneline --graph
+[push]
+	autoSetupRemote = true
