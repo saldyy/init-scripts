@@ -23,8 +23,7 @@ install_packages() {
     evince \
     obs-studio \
     rofi \
-    sway \
-
+    sway
 
   # Install system utilities tools
   sudo dnf5 install -y \
@@ -46,35 +45,7 @@ install_packages() {
     fcitx5-qt \
     fcitx5-unikey \
 
-  # ## Insall deaandencies packages
-  # sudo dnf5 install -y \
-  #   gcc \
-  #   meson \
-  #   ninja-build \
-  #   wayland-devel \
-  #   mesa-libEGL-devel \
-  #   mesa-libGLES-devel \
-  #   mesa-dri-drivers \
-  #   xorg-x11-server-Xwayland \
-  #   libdrm-devel \
-  #   libgbm-devel \
-  #   libxkbcommon-devel \
-  #   libudev-devel \
-  #   pixman-devel \
-  #   libinput-devel \
-  #   libevdev-devel \
-  #   systemd-devel \
-  #   cairo-devel \
-  #   libpcap-devel \
-  #   json-c-devel \
-  #   pam-devel \
-  #   pango-devel \
-  #   pcre-devel \
-  #   gdk-pixbuf2-devel \
-  #   hwdata-devel
-
   flatpak install flathub io.github.seadve.Kooha
-
 }
 
 install_neovim() {
@@ -86,24 +57,17 @@ install_neovim() {
 }
 
 install_zsh() {
-  KEEP_ZSHRC="yes"
   DRACULA_ZSH_THEME_DIR="${THEMES_DIR}/dracula-zsh"
 
   sudo dnf5 install -y zsh
-  sudo chsh -s $(which zsh)
-  # Install Oh My Zsh
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  chsh -s $(which zsh)
+  #
+  # Install Zplug
+  curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 
   # Install zsh-autosuggestions/completions plugins
-  git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH}/custom/plugins/zsh-autosuggestions"
-  git clone https://github.com/zsh-users/zsh-completions "${ZSH}/custom/plugins/zsh-completions"
-
-  # Copy Dracula theme
-  create_dir $THEMES_DIR
-
-  rm -rf $DRACULA_ZSH_THEME_DIR
-  git clone https://github.com/dracula/zsh.git $DRACULA_ZSH_THEME_DIR
-  ln -fs $DRACULA_ZSH_THEME_DIR/dracula.zsh-theme "${ZSH}/themes"
+  git clone https://github.com/zsh-users/zsh-autosuggestions "${HOME}/.zsh/zsh-autosuggestions"
+  git clone https://github.com/zsh-users/zsh-completions "${HOME}/.zsh/zsh-completions"
 }
 
 install_ghostty() {
@@ -117,6 +81,5 @@ init() {
   install_zsh
   install_ghostty
 }
-
 
 init

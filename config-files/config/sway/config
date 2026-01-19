@@ -231,12 +231,6 @@ include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "
 
 exec --no-startup-id i3-msg "workspace 1; exec wezterm"
 
-exec swaymsg gaps outer set 20px
-
-# Set up ui
-gaps inner 10
-gaps outer 10
-
 client.unfocused          #282a36 #282a36  #6272a4 #6272a4  #282a36 
 client.focused	          #303446 #303446  #6272a4 #6272a4  #303446
 client.focused_inactive	  #44475a #44475a  #6272a4 #6272a4  #44475a 
