@@ -52,6 +52,9 @@ telescope.setup {
     sorting_strategy = "ascending",
     selection_strategy = "follow",
     layout_strategy = "vertical",
+    preview = {
+      treesitter = false,
+    },
     layout_config = {
       vertical = {
         width = 0.8,

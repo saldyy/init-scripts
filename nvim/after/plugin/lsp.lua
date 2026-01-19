@@ -42,9 +42,9 @@ end
 -- Function to simplify LSP server setup
 local function setup_servers(servers)
   for _, lsp in pairs(servers) do
-    vim.lsp.config(lsp, {
+    vim.lsp.enable(lsp, {
       capabilities = client_capabilities,
-      on_attach = on_attach,
+      -- on_attach = on_attach,
     })
   end
 end
@@ -62,6 +62,22 @@ setup_servers({
   "html",
   "biome",
 })
+
+vim.lsp.handlers['client/registerCapability'] = (function(overridden)
+  return function(err, res, ctx)
+    local result = overridden(err, res, ctx)
+    local client = vim.lsp.get_client_by_id(ctx.client_id)
+    if not client then
+      return
+    end
+    for bufnr, _ in pairs(client.attached_buffers) do
+      on_attach(client, bufnr)
+      -- Call your custom on_attach logic...
+      -- my_on_attach(client, bufnr)
+    end
+    return result
+  end
+end)(vim.lsp.handlers['client/registerCapability'])
 
 -- TailwindCSS setup with specific filetypes
 vim.lsp.enable("tailwindcss", {
