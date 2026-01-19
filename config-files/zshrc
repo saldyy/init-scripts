@@ -28,6 +28,7 @@ if [ -d "$FNM_PATH" ]; then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source <(fzf --zsh)
 
 # complete -o nospace -C /usr/bin/aws-sso aws-sso.
 
