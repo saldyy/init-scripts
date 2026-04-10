@@ -36,6 +36,7 @@ install_packages() {
     nmap \
     htop \
     xrandr \
+    wdisplays \
     lazygit
 
   ## Install Keyboard packages
