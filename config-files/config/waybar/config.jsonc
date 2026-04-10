@@ -10,8 +10,11 @@
         "cpu",
         "memory",
         "battery",
+        "tray",
+        "custom/shutdown"
+    ],
+    "modules-center": [
         "clock",
-        "tray"
     ],
     "sway/workspaces": {
         "disable-scroll": true,
@@ -30,8 +33,28 @@
       "spacing": 10
     },
     "clock": {
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+      "format": "{:%A, %B %d, %Y (%R)}",
+      "tooltip-format": "<tt><small>{calendar}</small></tt>",
+      "calendar": {
+        "mode"          : "year",
+        "mode-mon-col"  : 3,
+        "weeks-pos"     : "right",
+        "on-scroll"     : 1,
+        "format": {
+          "months":     "<span color='#ffead3'><b>{}</b></span>",
+          "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+          "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+          "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+          "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+        }
+      },
+      "actions":  {
+        "on-click-right": "mode",
+        "on-scroll-up": "tz_up",
+        "on-scroll-down": "tz_down",
+        "on-scroll-up": "shift_up",
+        "on-scroll-down": "shift_down"
+      }
     },
     "cpu": {
         "format": "{usage}% ",
@@ -59,6 +82,11 @@
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "custom/shutdown": {
+        "format": "⏻",
+        "tooltip": false,
+        "on-click": "systemctl poweroff"
     },
     "pulseaudio": {
         "format": "{volume}% {icon} {format_source}",

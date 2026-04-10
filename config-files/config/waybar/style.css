@@ -30,7 +30,7 @@ window#waybar.empty {
   border: none;
 }
 
-.modules-left, .modules-right {
+.modules-left, .modules-right, .modules-center {
   background: @bg;
   border: 1px solid @surface;
   border-radius: 16px;
@@ -124,6 +124,12 @@ window#waybar.empty {
 #tray > .needs-attention {
   -gtk-icon-effect: highlight;
   background-color: @red;
+}
+
+#custom-shutdown {
+  color: @red;
+  padding: 0 10px;
+  font-weight: bold;
 }
 
 
