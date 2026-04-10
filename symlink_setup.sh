@@ -1,8 +1,6 @@
 #!/bin/bash
 
 
-echo "ho"
-
 rm -rf ~/.zshrc
 ln -fs $(pwd)/config-files/zshrc ~/.zshrc
 
