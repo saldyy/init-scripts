@@ -73,3 +73,6 @@ setopt incappendhistory
 
 
 zplug load
+export PATH="$HOME/.local/bin:$PATH"
+
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
