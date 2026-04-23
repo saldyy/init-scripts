@@ -21,6 +21,10 @@ ln -fs $(pwd)/config-files/config/sway ~/.config/sway
 
 rm -rf ~/.config/waybar
 ln -fs $(pwd)/config-files/config/waybar ~/.config/waybar
+
+rm -rf ~/.config/rofi
+ln -fs $(pwd)/config-files/config/rofi ~/.config/rofi
+
 #
 # ln -fs $(pwd)/config-files/config/ghostty ~/.config/ghostty
 # ln -fs $(pwd)/config-files/config/ghostty ~/.config/ghostty
