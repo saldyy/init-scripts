@@ -86,7 +86,7 @@
     "custom/shutdown": {
         "format": "⏻",
         "tooltip": false,
-        "on-click": "systemctl poweroff"
+        "on-click": "pkexec systemctl poweroff"
     },
     "pulseaudio": {
         "format": "{volume}% {icon} {format_source}",
