@@ -1,6 +1,6 @@
 @define-color bg        #282a36;
-@define-color bg2       #303446; /* gentle hover/alt */
-@define-color surface   #44475a; /* current line */
+@define-color bg2       #303446;
+@define-color surface   #44475a;
 @define-color fg        #f8f8f2;
 @define-color comment   #6272a4;
 @define-color cyan      #8be9fd;
@@ -12,7 +12,7 @@
 @define-color yellow    #f1fa8c;
 
 * {
-  font-family: 'Noto Sans Mono', 'Font Awesome 6 Free', 'Font Awesome 6 Brands', monospace;
+  font-family: 'Hack Nerd Font Mono 12';
   font-size: 13px;
   font-weight: bold;
 }
@@ -43,6 +43,10 @@ window#waybar.empty {
   color: @comment;
 }
 
+.modules-right > widget > * {
+    margin: 0 0;
+}
+
 #workspaces button {
   color: @comment;
   background: transparent;
@@ -54,21 +58,10 @@ window#waybar.empty {
   border: 1px solid @surface;
 }
 
-#clock,
-#battery,
-#cpu,
-#memory,
-#pulseaudio,
-#tray {
+#clock, #battery, #cpu, #memory, #pulseaudio, #tray {
   padding: 0 10px;
   color: @fg;
   border-radius: 16px;
-}
-
-
-#window,
-#workspaces {
-  margin: 0 4px;
 }
 
 #clock {
@@ -95,9 +88,6 @@ window#waybar.empty {
   color: @green;
 }
 
-#network {
-}
-
 #pulseaudio {
   color: @comment;
 }
@@ -108,9 +98,6 @@ window#waybar.empty {
 
 #wireplumber {
   color: #000000;
-}
-
-#wireplumber.muted {
 }
 
 #tray {
@@ -131,5 +118,4 @@ window#waybar.empty {
   padding: 0 10px;
   font-weight: bold;
 }
-
 

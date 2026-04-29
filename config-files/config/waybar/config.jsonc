@@ -75,21 +75,13 @@
         "format-alt": "{time} {icon}",
         "format-icons": ["", "", "", "", ""]
     },
-    "network": {
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
-    },
     "custom/shutdown": {
-        "format": "⏻",
+        "format": "󰐥",
         "tooltip": false,
         "on-click": "pkexec systemctl poweroff"
     },
     "pulseaudio": {
-        "format": "{volume}% {icon} {format_source}",
+        "format": "{volume}% {icon}\t {format_source}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
         "format-muted": " {format_source}",

@@ -1,5 +1,5 @@
 theme = dracula
-font-family = "JetBrains Mono" 
+font-family = "Hack Nerd Font Mono 12" 
 shell-integration-features = no-cursor,sudo,no-title
 cursor-style = block
 
