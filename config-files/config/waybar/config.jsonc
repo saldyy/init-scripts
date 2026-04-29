@@ -76,7 +76,7 @@
         "format-icons": ["", "", "", "", ""]
     },
     "custom/shutdown": {
-        "format": "󰐥",
+        "format": "",
         "tooltip": false,
         "on-click": "pkexec systemctl poweroff"
     },
