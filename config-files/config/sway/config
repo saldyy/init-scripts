@@ -215,6 +215,11 @@ bindsym $mod+r mode "resize"
 # will always be loaded instead of `/usr/share/sway/config.d/20-swayidle.conf`
 # or `/etc/sway/config.d/20-swayidle.conf`
 
+exec swayidle -w \
+    timeout 5 'swaylock -f -i ~/Pictures/cyberpunk_wallpaper_2.jpg' \
+    timeout 20 'systemctl suspend' \
+    before-sleep 'swaylock -f -i ~/Pictures/cyberpunk_wallpaper_2.jpg'
+
 #
 # This mechanism permits overriding our default configuration per-system
 # (/etc) or per-user ($XDG_CONFIG_HOME) basis. Just create the file you
