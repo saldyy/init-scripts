@@ -216,8 +216,8 @@ bindsym $mod+r mode "resize"
 # or `/etc/sway/config.d/20-swayidle.conf`
 
 exec swayidle -w \
-    timeout 5 'swaylock -f -i ~/Pictures/cyberpunk_wallpaper_2.jpg' \
-    timeout 20 'systemctl suspend' \
+    timeout 60 'swaylock -f -i ~/Pictures/cyberpunk_wallpaper_2.jpg' \
+    timeout 90 'systemctl suspend' \
     before-sleep 'swaylock -f -i ~/Pictures/cyberpunk_wallpaper_2.jpg'
 
 #
