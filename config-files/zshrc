@@ -1,57 +1,14 @@
-#If you come from bash you might have to change your $PATH.
+# ============================================================
+#  PATH configuration (built once, no duplicates)
+# ============================================================
 
-# Path to your oh-my-zsh installation.
-
-source ~/.zplug/init.zsh
-
-zplug "dracula/zsh", as:theme
-zplug "plugins/git", from:oh-my-zsh
-zplug "plugins/aws", from:oh-my-zsh
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-
-zplug "~/.zsh/zsh-autosuggestions", from:local
-zplug "~/.zsh/zsh-completions", from:local
-
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
-
-
-fpath=($HOME/.zsh/zsh-completions/src $fpath)
-
+# fnm
 export FNM_PATH="$HOME/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then
   export PATH="$FNM_PATH:$PATH"
   eval "`fnm env`"
 fi
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source <(fzf --zsh)
-
-# complete -o nospace -C /usr/bin/aws-sso aws-sso.
-
-autoload -U +X bashcompinit && bashcompinit
-# complete -o nospace -C /usr/bin/terraform terraform
-
-alias vim=nvim
-export VISUAL=$(which nvim)
-export EDITOR="$VISUAL"
-
-# PATH config
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$PATH:/usr/local/go/bin
-export PATH="$HOME/.local/bin:$PATH"
-export GOPATH=$HOME/go 
-export GOROOT=/usr/local/go 
-export GOBIN=$GOPATH/bin 
-export PATH=$PATH:$GOBIN
-
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export XMODIFIERS=@im=fcitx
+# fnm end
 
 # pnpm
 export PNPM_HOME="/home/$USER/.local/share/pnpm"
@@ -61,39 +18,82 @@ case ":$PATH:" in
 esac
 # pnpm end
 
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$PATH:/usr/local/go/bin
+export PATH="$HOME/.local/bin:$PATH"
+export GOPATH=$HOME/go 
+export GOROOT=/usr/local/go 
+export GOBIN=$GOPATH/bin 
+export PATH=$PATH:$GOBIN
+export PATH=$PATH:/usr/local/bin
+export PATH=$PATH:/usr/bin
+
+# ============================================================
+#  FZF
+# ============================================================
+source <(fzf --zsh)
+
+# ============================================================
+#  Input method (fcitx)
+# ============================================================
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+
+
+# ============================================================
+#  zplug — register plugins, then load
+# ============================================================
+
+source ~/.zplug/init.zsh
+
+zplug "dracula/zsh", as:theme
+zplug "plugins/git", from:oh-my-zsh
+zplug "plugins/aws", from:oh-my-zsh
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+zplug load
+
+fpath=($HOME/.zsh/zsh-completions/src $fpath)
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+autoload -Uz compinit
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+  compinit          # dump is stale (>24h): run full audit
+else
+  compinit -C       # dump is fresh: skip the security audit
+fi
+
+
+# ============================================================
+#  Editor
+# ============================================================
+alias vim=nvim
+export VISUAL=$(which nvim)
+export EDITOR="$VISUAL"
+
+
+# ============================================================
+#  Keybindings (vi mode)
+# ============================================================
 bindkey -v
 bindkey -M viins '^[[1;5D' vi-backward-word
 bindkey -M viins '^[[1;5C' vi-forward-word
 bindkey -M viins '^[[3~' vi-delete-char
 
-
+# ============================================================
+#  History
+# ============================================================
 export HISTFILE=~/.zsh_history
 export HISTSIZE=5000
 export SAVEHIST=5000
 setopt appendhistory
 setopt sharehistory
 setopt incappendhistory
-
-
-zplug load
-
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/png/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/png/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/png/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/png/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-
-# Turso
-export PATH="$PATH:/home/png/.turso"
