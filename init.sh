@@ -71,9 +71,9 @@ install_zsh() {
   git clone https://github.com/zsh-users/zsh-completions "${HOME}/.zsh/zsh-completions"
 }
 
-install_ghostty() {
-  sudo dnf5 copr enable -y scottames/ghostty
-  sudo dnf5 install -y ghostty
+install_wezterm() {
+  sudo dnf5 copr enable wezfurlong/wezterm-nightly -y
+  sudo dnf5 install wezterm -y
 }
 
 install_hack_nerd_font() {
@@ -126,8 +126,8 @@ init() {
   # install_packages
   # install_neovim
   # install_zsh
-  # install_ghostty
-  install_hack_nerd_font
+  install_wezterm
+  # install_hack_nerd_font
 }
 
 init
