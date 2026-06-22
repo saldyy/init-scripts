@@ -238,14 +238,20 @@ client.unfocused          #282a36 #282a36  #6272a4 #6272a4  #282a36
 client.focused	          #303446 #303446  #6272a4 #6272a4  #303446
 client.focused_inactive	  #44475a #44475a  #6272a4 #6272a4  #44475a 
 
-# Multi monitor support, might need to update this based on each system
-# workspace 1 output HDMI-A-2
-# workspace 2 output HDMI-A-2
-# workspace 3 output HDMI-A-2
-# workspace 4 output HDMI-A-2
-# workspace 5 output HDMI-A-2
+# ================================================
+# Multi-monitors configuration, change the output name depends on each device
+# ================================================
+
+# output HDMI-A-1 pos 0 0
+# output eDP1 pos 1920 0
+# # Multi monitor support, might need to update this based on each system
+# workspace 1 output HDMI-A-1
+# workspace 2 output HDMI-A-1
+# workspace 3 output HDMI-A-1
+# workspace 4 output HDMI-A-1
+# workspace 5 output HDMI-A-1
+# workspace 6 output HDMI-A-1
+# workspace 7 output HDMI-A-1
 #
-# workspace 6 output eDP-1
-# workspace 7 output eDP-1
 # workspace 8 output eDP-1
 # workspace 9 output eDP-1
