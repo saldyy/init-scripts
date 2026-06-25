@@ -1,131 +1,62 @@
--- Initialize Mason
+-- Mason
 require("mason").setup()
 require("mason-lspconfig").setup({
   automatic_enable = false,
   ensure_installed = {
-    "ts_ls",
-    "lua_ls",
-    "eslint",
-    "dockerls",
-    "docker_compose_language_service",
-    "gopls",
-    "golangci_lint_ls",
-    "templ",
-    "tailwindcss",
-    "pyright",
-    "html",
-    "biome",
-  }
-})
-
--- Common LSP setup
-
--- Common on_attach function
-local function on_attach(client, bufnr)
-  local opts = { buffer = bufnr, remap = false }
-
-  -- Keymaps (defined once, applied globally)
-  local keymap = vim.keymap.set
-  keymap("n", "gd", vim.lsp.buf.definition, opts)
-  keymap("n", "K", vim.lsp.buf.hover, opts)
-  keymap("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
-  keymap("n", "<leader>vd", vim.diagnostic.open_float, opts)
-  keymap("n", "[d", vim.diagnostic.goto_next, opts)
-  keymap("n", "]d", vim.diagnostic.goto_prev, opts)
-  keymap("n", "<leader>vca", vim.lsp.buf.code_action, opts)
-  keymap("n", "<leader>vrr", vim.lsp.buf.references, opts)
-  keymap("n", "<leader>vrn", vim.lsp.buf.rename, opts)
-  keymap("i", "<C-h>", vim.lsp.buf.signature_help, opts)
-  keymap("n", "<space>f", function() vim.lsp.buf.format({ async = true }) end)
-end
-
--- Function to simplify LSP server setup
-local function setup_servers(servers)
-  for _, lsp in pairs(servers) do
-    vim.lsp.enable(lsp, {
-      capabilities = client_capabilities,
-      -- on_attach = on_attach,
-    })
-  end
-end
-
-
--- Setup common language servers
-setup_servers({
-  "ts_ls",
-  "lua_ls",
-  "dockerls",
-  "gopls",
-  "golangci_lint_ls",
-  "pyright",
-  "templ",
-  "html",
-  "biome",
-})
-
-vim.lsp.handlers['client/registerCapability'] = (function(overridden)
-  return function(err, res, ctx)
-    local result = overridden(err, res, ctx)
-    local client = vim.lsp.get_client_by_id(ctx.client_id)
-    if not client then
-      return
-    end
-    for bufnr, _ in pairs(client.attached_buffers) do
-      on_attach(client, bufnr)
-      -- Call your custom on_attach logic...
-      -- my_on_attach(client, bufnr)
-    end
-    return result
-  end
-end)(vim.lsp.handlers['client/registerCapability'])
-
--- TailwindCSS setup with specific filetypes
-vim.lsp.enable("tailwindcss", {
-  capabilities = client_capabilities,
-  on_attach = on_attach,
-  filetypes = {
-    "aspnetcorerazor",
-    "astro",
-    "blade",
-    "django-html",
-    "html",
-    "markdown",
-    "typescriptreact",
-    "vue",
-    "svelte",
-    "templ",
-  }
-})
-
--- Eslint specific setup
-vim.lsp.enable("eslint", {
-  capabilities = client_capabilities,
-  flags = { debounce_text_changes = 500 },
-  filetypes = {
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "mjs",
-    "cjs",
+    "ts_ls", "lua_ls", "eslint", "dockerls",
+    "docker_compose_language_service", "gopls",
+    "golangci_lint_ls", "templ", "tailwindcss",
+    "pyright", "html", "biome",
   },
-  on_attach = function(client, bufnr)
-    client.server_capabilities.documentFormattingProvider = true
-    if client.server_capabilities.documentFormattingProvider then
-      local au_lsp = vim.api.nvim_create_augroup("eslint_lsp", { clear = true })
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        pattern = "*",
-        callback = function() end,
-        -- callback = function() vim.lsp.buf.format({ async = false }) end,
-        group = au_lsp,
-      })
-    end
+})
+
+-- Shared capabilities (extend if you use nvim-cmp / blink.cmp)
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- If using nvim-cmp:
+-- capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+
+-- Apply shared defaults to ALL servers via the '*' wildcard
+vim.lsp.config("*", {
+  capabilities = capabilities,
+})
+
+-- Keymaps on attach (single source of truth)
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local bufnr = args.buf
+    local opts = { buffer = bufnr, remap = false, silent = true }
+    local keymap = vim.keymap.set
+
+    keymap("n", "gd", vim.lsp.buf.definition, opts)
+    keymap("n", "K", vim.lsp.buf.hover, opts)
+    keymap("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
+    keymap("n", "<leader>vd", vim.diagnostic.open_float, opts)
+    keymap("n", "[d", vim.diagnostic.goto_next, opts)
+    keymap("n", "]d", vim.diagnostic.goto_prev, opts)
+    keymap("n", "<leader>vca", vim.lsp.buf.code_action, opts)
+    keymap("n", "<leader>vrr", vim.lsp.buf.references, opts)
+    keymap("n", "<leader>vrn", vim.lsp.buf.rename, opts)
+    keymap("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+    keymap("n", "<space>f", function()
+      vim.lsp.buf.format({ async = true })
+    end, opts)
   end,
 })
 
-vim.lsp.enable("gopls", {})
+-- Enable servers (each one's config lives in lsp/<name>.lua)
+vim.lsp.enable({
+  "gopls",
+  "lua_ls",
+  "ts_ls",
+  "pyright",
+  "eslint",
+  "tailwindcss",
+  "biome",
+  "golangci_lint_ls",
+  "dockerls",
+  "templ",
+  "html",
+})
 
-vim.lsp.enable("biome", {})
-
--- Additional filetype definitions
+-- Filetypes
 vim.filetype.add({ extension = { templ = "templ" } })
