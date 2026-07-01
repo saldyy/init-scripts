@@ -28,14 +28,14 @@ end)
 config.leader = { key = 'g', mods = 'CTRL', timeout_milliseconds = 1000 }
 config.keys = {
   {
-    key = '%',
-    mods = 'LEADER',
+    key = 'phys:5',
+    mods = 'LEADER|SHIFT',
     action = act.SplitHorizontal { domain = "CurrentPaneDomain" },
   },
   {
-    key = '"',
-    mods = 'LEADER',
-    action = act.SplitVertical { domain = "CurrentPaneDomain" },
+    key = "phys:Quote",
+    mods = 'LEADER|SHIFT',
+    action = act.SplitVertical{ domain = 'CurrentPaneDomain' }
   },
   {
     key = 'z',
