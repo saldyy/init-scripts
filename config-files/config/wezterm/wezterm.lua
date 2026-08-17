@@ -5,6 +5,8 @@ local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 local act = wezterm.action
 
+config.tab_and_split_indices_are_zero_based = true
+
 config.font = wezterm.font('JetBrains Mono', { italic = false })
 config.inactive_pane_hsb = {
   saturation = 0.5,
@@ -112,6 +114,14 @@ config.keys = {
     action = act.ActivatePaneDirection 'Down',
   },
 }
+
+for i = 0, 9 do
+  table.insert(config.keys, {
+    key = tostring(i),
+    mods = 'LEADER',
+    action = act.ActivateTab(i),
+  })
+end
 --
 -- and finally, return the configuration to wezterm
 return config
