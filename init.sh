@@ -37,7 +37,8 @@ install_packages() {
     htop \
     xrandr \
     wdisplays \
-    lazygit
+    lazygit \
+    fastfetch
 
   ## Install Keyboard packages
   sudo dnf5 install -y \
