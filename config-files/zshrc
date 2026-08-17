@@ -97,3 +97,5 @@ export SAVEHIST=5000
 setopt appendhistory
 setopt sharehistory
 setopt incappendhistory
+
+fastfetch
