@@ -19,14 +19,24 @@ esac
 # pnpm end
 
 export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$PATH:/usr/local/go/bin
 export PATH="$HOME/.local/bin:$PATH"
-export GOPATH=$HOME/go 
-export GOROOT=/usr/local/go 
-export GOBIN=$GOPATH/bin 
+export GOPATH=$HOME/go
+if [ -d /usr/local/go ]; then
+  export PATH=$PATH:/usr/local/go/bin
+  export GOROOT=/usr/local/go
+fi
+export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOBIN
 export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:/usr/bin
+export PATH="$PATH:$HOME/.flutter/flutter/bin"
+export PATH="$PATH:$HOME/.terragrunt/bin"
+
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+[ -d /usr/lib/jvm/java-21-openjdk ] && export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
+
 
 # ============================================================
 #  FZF
@@ -45,11 +55,14 @@ export XMODIFIERS=@im=fcitx
 #  zplug — register plugins, then load
 # ============================================================
 
-source ~/.zplug/init.zsh
+# ZPLUG_INIT is set by NixOS (nix/modules/packages.nix)
+source ${ZPLUG_INIT:-~/.zplug/init.zsh}
 
 zplug "dracula/zsh", as:theme
 zplug "plugins/git", from:oh-my-zsh
 zplug "plugins/aws", from:oh-my-zsh
+zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
 if ! zplug check --verbose; then
@@ -60,9 +73,6 @@ if ! zplug check --verbose; then
 fi
 
 zplug load
-
-fpath=($HOME/.zsh/zsh-completions/src $fpath)
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 autoload -Uz compinit
 if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then

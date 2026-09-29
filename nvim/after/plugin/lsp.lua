@@ -1,14 +1,16 @@
--- Mason
-require("mason").setup()
-require("mason-lspconfig").setup({
-  automatic_enable = false,
-  ensure_installed = {
-    "ts_ls", "lua_ls", "eslint", "dockerls",
-    "docker_compose_language_service", "gopls",
-    "golangci_lint_ls", "templ", "tailwindcss",
-    "pyright", "html", "biome",
-  },
-})
+-- Mason (skipped on NixOS: servers come from Nix via PATH, see nix/home/saldyy.nix)
+if vim.fn.filereadable("/etc/NIXOS") == 0 then
+  require("mason").setup()
+  require("mason-lspconfig").setup({
+    automatic_enable = false,
+    ensure_installed = {
+      "ts_ls", "lua_ls", "eslint", "dockerls",
+      "docker_compose_language_service", "gopls",
+      "golangci_lint_ls", "templ", "tailwindcss",
+      "pyright", "html", "biome",
+    },
+  })
+end
 
 -- Shared capabilities (extend if you use nvim-cmp / blink.cmp)
 local capabilities = vim.lsp.protocol.make_client_capabilities()

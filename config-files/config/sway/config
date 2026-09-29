@@ -232,7 +232,13 @@ exec swayidle -w \
 # important to make the magic work. And if you want to learn the secret behind
 # the trick, it's all in the `wordexp(3)`.
 #
-include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'
+# layered-include (above) is Fedora-only; on NixOS /etc/sway/config.d carries
+# the dbus/systemd environment import.
+include /etc/sway/config.d/*
+
+bar {
+    swaybar_command waybar
+}
 
 client.unfocused          #282a36 #282a36  #6272a4 #6272a4  #282a36 
 client.focused	          #303446 #303446  #6272a4 #6272a4  #303446

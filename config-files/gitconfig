@@ -10,3 +10,12 @@
 	adog = log --all --decorate --oneline --graph
 [push]
 	autoSetupRemote = true
+[credential "https://github.com"]
+	helper = 
+	helper = !gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !gh auth git-credential
+
+[core]
+  sshCommand = ssh -i ~/.ssh/saldyy_github 
