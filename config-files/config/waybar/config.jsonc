@@ -78,7 +78,7 @@
     "custom/shutdown": {
         "format": "",
         "tooltip": false,
-        "on-click": "pkexec systemctl poweroff"
+        "on-click": "swaynag -t warning -m 'Shut down the computer?' -s 'Cancel' -B 'Shutdown' 'shutdown now'"
     },
     "pulseaudio": {
         "format": "{volume}% {icon}\t {format_source}",
