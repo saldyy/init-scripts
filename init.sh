@@ -9,6 +9,8 @@ create_dir() {
 }
 
 install_packages() {
+  echo "==> Installing packages..."
+
   # Enable COPR repositories
   dnf copr enable -y dejan/lazygit
 
@@ -52,6 +54,8 @@ install_packages() {
 }
 
 install_neovim() {
+  echo "==> Installing Neovim..."
+
   sudo dnf5 install -y neovim
 
   # Install Vim Plug for Neovim
@@ -60,6 +64,8 @@ install_neovim() {
 }
 
 install_zsh() {
+  echo "==> Installing Zsh..."
+
   DRACULA_ZSH_THEME_DIR="${THEMES_DIR}/dracula-zsh"
 
   sudo dnf5 install -y zsh
@@ -74,11 +80,15 @@ install_zsh() {
 }
 
 install_wezterm() {
+  echo "==> Installing WezTerm..."
+
   sudo dnf5 copr enable wezfurlong/wezterm-nightly -y
   sudo dnf5 install wezterm -y
 }
 
 install_brave() {
+  echo "==> Installing Brave browser..."
+
   sudo dnf5 install -y dnf-plugins-core
 
   sudo dnf5 config-manager addrepo --from-repofile=https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
@@ -87,10 +97,14 @@ install_brave() {
 }
 
 install_ansible() {
+  echo "==> Installing Ansible..."
+
   sudo dnf5 install -y ansible
 }
 
 install_hack_nerd_font() {
+    echo "==> Installing Hack Nerd Font..."
+
     # Define local variables
     local URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Hack.zip"
     local TARGET_DIR="$HOME/.local/share/fonts/"
