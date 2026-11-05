@@ -77,6 +77,14 @@ install_wezterm() {
   sudo dnf5 install wezterm -y
 }
 
+install_brave() {
+  sudo dnf5 install -y dnf-plugins-core
+
+  sudo dnf5 config-manager addrepo --from-repofile=https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+
+  sudo dnf5 install -y brave-browser
+}
+
 install_hack_nerd_font() {
     # Define local variables
     local URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Hack.zip"
@@ -128,6 +136,7 @@ init() {
   # install_neovim
   # install_zsh
   install_wezterm
+  install_brave
   # install_hack_nerd_font
 }
 
