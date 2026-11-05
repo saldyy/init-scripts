@@ -46,6 +46,7 @@ install_packages() {
     fcitx5-configtool \
     fcitx5-qt \
     fcitx5-unikey \
+    fcitx5-autostart \
 
   flatpak install flathub io.github.seadve.Kooha
 }
