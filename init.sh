@@ -85,6 +85,10 @@ install_brave() {
   sudo dnf5 install -y brave-browser
 }
 
+install_ansible() {
+  sudo dnf5 install -y ansible
+}
+
 install_hack_nerd_font() {
     # Define local variables
     local URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Hack.zip"
@@ -137,6 +141,7 @@ init() {
   # install_zsh
   install_wezterm
   install_brave
+  install_ansible
   # install_hack_nerd_font
 }
 
